@@ -10,6 +10,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+// Get all components
 app.get('/api/components', (req, res) => {
     const sql = 'SELECT * FROM components';
     db.all(sql, [], (err, rows) => {
@@ -21,6 +22,7 @@ app.get('/api/components', (req, res) => {
     });
 });
 
+// Add a new component
 app.post('/api/components', (req, res) => {
     const { component_id, component_name, quantity } = req.body;
     const sql = 'INSERT INTO components (component_id, component_name, quantity) VALUES (?, ?, ?)';
@@ -34,6 +36,22 @@ app.post('/api/components', (req, res) => {
     });
 });
 
+// Update a component
+app.put('/api/components/:id', (req, res) => {
+    const { id } = req.params;
+    const { component_id, component_name, quantity } = req.body;
+    const sql = 'UPDATE components SET component_id = ?, component_name = ?, quantity = ? WHERE id = ?';
+    const params = [component_id, component_name, quantity, id];
+    db.run(sql, params, function (err) {
+        if (err) {
+            res.status(400).json({ error: err.message });
+            return;
+        }
+        res.json({ message: 'Updated successfully' });
+    });
+});
+
+// Delete a component
 app.delete('/api/components/:id', (req, res) => {
     const { id } = req.params;
     const sql = 'DELETE FROM components WHERE id = ?';
