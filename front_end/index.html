@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Stock Monitoring</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Warehouse Stock Monitoring</h1>
+        <table id="stockTable">
+            <thead>
+                <tr>
+                    <th>Component ID</th>
+                    <th>Component Name</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+        <button id="addComponentBtn">Add Component</button>
+    </div>
+
+    <div id="addComponentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Component</h2>
+            <form id="addComponentForm">
+                <label for="componentId">Component ID:</label>
+                <input type="text" id="componentId" required>
+                <label for="componentName">Component Name:</label>
+                <input type="text" id="componentName" required>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" required>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
